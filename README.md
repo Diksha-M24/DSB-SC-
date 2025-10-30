@@ -48,11 +48,56 @@ Model Waveform
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
+clc;
+clear;
+close;
+Am = 9.8;          // Message amplitude
+Ac = 19.6;         // Carrier amplitude
+Fm = 550;          // Message frequency (Hz)
+Fc = 5500;         // Carrier frequency (Hz)
+Fs = 55000;        // Sampling frequency (Hz)
+t = 0:1/Fs:0.005;  // 5 ms duration
+m = Am * sin(2 * %pi * Fm * t);
+c = Ac * sin(2 * %pi * Fc * t);
+
+//// DSB-SC modulated signal
+s = m .* c;        // Multiplication (no carrier term added)
+
+//// Plotting all signals
+subplot(3,1,1)
+plot(t, m)
+title('Message Signal')
+xlabel('Time (s)')
+ylabel('Amplitude (V)')
+xgrid()
+
+subplot(3,1,2)
+plot(t, c)
+title('Carrier Signal')
+xlabel('Time (s)')
+ylabel('Amplitude (V)')
+xgrid()
+
+subplot(3,1,3)
+plot(t, s)
+title('DSB-SC Modulated Signal')
+xlabel('Time (s)')
+ylabel('Amplitude (V)')
+xgrid()
+disp("   Time(s)        Message(V)        Carrier(V)        DSB-SC(V)");
+for i = 1:10:length(t) // every 10th sample for readability
+    mprintf("%10.6f    %10.4f    %10.4f    %10.4f\n", t(i), m(i), c(i), s(i));
+end
+
 
 Output Graph
+<img width="757" height="719" alt="Screenshot 2025-10-30 090950" src="https://github.com/user-attachments/assets/a5173b5d-a970-4233-9777-b0e2c7467517" />
+
 
 
 Tablular Column
+<img width="783" height="1280" alt="image" src="https://github.com/user-attachments/assets/8fe0ee8a-e5e1-4116-8a9a-59ec0dffd58a" />
+
 
 
 Result
