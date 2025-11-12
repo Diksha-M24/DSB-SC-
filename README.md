@@ -43,71 +43,51 @@ PROCEDURE
 •	If any Error, correct it in code and execute again
 •	Verify the generated waveform using Tabulation and Model Waveform
 
+
 Model Waveform
 
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
-clc;
+```clc;
 clear;
 close;
-
-//// Given parameters
-Am = 9.8;          // Message amplitude
-Ac = 19.6;         // Carrier amplitude
-Fm = 550;          // Message frequency (Hz)
-Fc = 5500;         // Carrier frequency (Hz)
-Fs = 55000;        // Sampling frequency (Hz)
-
-//// Time vector
-t = 0:1/Fs:0.005;  // 5 ms duration
-
-//// Message signal
-m = Am * sin(2 * %pi * Fm * t);
-
-//// Carrier signal
-c = Ac * sin(2 * %pi * Fc * t);
-
-//// DSB-SC modulated signal
-s = m .* c;        // Multiplication (no carrier term added)
-
-//// Plotting all signals
-subplot(3,1,1)
-plot(t, m)
-title('Message Signal')
-xlabel('Time (s)')
-ylabel('Amplitude (V)')
-xgrid()
-
-subplot(3,1,2)
-plot(t, c)
-title('Carrier Signal')
-xlabel('Time (s)')
-ylabel('Amplitude (V)')
-xgrid()
-
+Ac=18.4;
+Am=9.2;
+Fc=4900;
+Fm=490;
+Fs=50000;
+t=0:1/Fs:2/Fm;
+wm=2*3.14*Fm;
+wc=2*3.14*Fc;
+E1=Am*sin(2*3.14*Fm*t);
+subplot(3,1,1);
+plot(t,E1);
+xlabel("Time(s)");
+ylabel("Amplitude");
+title("Message Signal m(t)");
+E2=Ac*sin(2*3.14*Fc*t);
+subplot(3,1,2);
+plot(t,E2);
+xlabel("Time(s)");
+ylabel("Amplitude");
+title("Carrier Signal c(t)");
+E3=((Am/2)*cos((wc-wm)*t))-((Am/2)*cos((wc+wm)*t));
 subplot(3,1,3)
-plot(t, s)
-title('DSB-SC Modulated Signal')
-xlabel('Time (s)')
-ylabel('Amplitude (V)')
-xgrid()
-
-//// Display tabulation of sample values
-disp("   Time(s)        Message(V)        Carrier(V)        DSB-SC(V)");
-for i = 1:10:length(t) // every 10th sample for readability
-    mprintf("%10.6f    %10.4f    %10.4f    %10.4f\n", t(i), m(i), c(i), s(i));
-end
+plot(t,E3);
+xlabel("Time(s)");
+ylabel("Amplitude");
+title("DSB-SC Modulated Signal s(t)");
+xgrid();
+```
 
 Output Graph
-<img width="757" height="719" alt="Screenshot 2025-10-30 090950" src="https://github.com/user-attachments/assets/26c345bb-0221-4c22-a288-0310920ddfff" />
 
-
-
+<img width="728" height="701" alt="Screenshot 2025-11-12 210235" src="https://github.com/user-attachments/assets/5b80d096-2824-4eb4-91ad-d1bcadd8927e" />
 
 Tablular Column
-<img width="783" height="1280" alt="image" src="https://github.com/user-attachments/assets/ed2e5fd7-2215-4e0e-90bd-32bed2ae59fb" />
 
+![WhatsApp Image 2025-11-12 at 20 59 33_dfb7947f](https://github.com/user-attachments/assets/3bb61e40-4474-4c91-91a9-18ec2f70d324)
 
 Result
 
