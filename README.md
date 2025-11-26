@@ -49,13 +49,13 @@ Model Waveform
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
-```clc;
+```
 clear;
 close;
-Ac=18.4;
-Am=9.2;
-Fc=4900;
-Fm=490;
+Ac=18.6;
+Am=8.8;
+Fc=4500;
+Fm=450;
 Fs=50000;
 t=0:1/Fs:2/Fm;
 wm=2*3.14*Fm;
@@ -80,14 +80,13 @@ ylabel("Amplitude");
 title("DSB-SC Modulated Signal s(t)");
 xgrid();
 ```
-
 Output Graph
 
-<img width="728" height="701" alt="Screenshot 2025-11-12 210235" src="https://github.com/user-attachments/assets/5b80d096-2824-4eb4-91ad-d1bcadd8927e" />
+![WhatsApp Image 2025-11-12 at 18 21 53_31ddd062](https://github.com/user-attachments/assets/4c5bf857-a31f-4351-a4b8-db3429c56262)
 
 Tablular Column
 
-![WhatsApp Image 2025-11-12 at 20 59 33_dfb7947f](https://github.com/user-attachments/assets/3bb61e40-4474-4c91-91a9-18ec2f70d324)
+![WhatsApp Image 2025-11-26 at 19 22 46_930230dc](https://github.com/user-attachments/assets/b76341ff-9dfb-4235-8cf4-59111c0caa9d)
 
 Result
 
